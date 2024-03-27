@@ -33,28 +33,39 @@ class CategoryController extends Controller
             ]);
 
             return redirect()->route('categories.index')->with('message', 'Category created.');
-            ;
         }
         dd('no image');
     }
 
-    // public function show($id)
-    // {
-    //     return view('admin.categories.show');
-    // }
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
 
-    // public function edit($id)
-    // {
-    //     return view('admin.categories.edit');
-    // }
+    public function update(Request $request, Category $category)
+    {
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/categories');
 
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $path
+            ]);
+            return redirect()->route('categories.index')->with('message', 'Category updated with image.');
+        } else {
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name)
+            ]);
+            return redirect()->route('categories.index')->with('message', 'Category updated.');
+        }
+    }
 
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('categories.index')->with('message', 'Category Deleted.');
+    }
 }
