@@ -6,16 +6,15 @@
 </x-slot>
 
 <div class="container mx-auto">
-
            <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="py-2 align-middle inline-block w-full sm:px-6 lg:px-8">
-                    {{-- <div class="flex justify-end">
-                        <a href="{{ route('admin.categories.create') }}"
-                            class="py-2 px-4 m-2 bg-green-500 hover:bg-green-300 text-gray-50 rounded-md">New
+                    <div class="flex justify-end">
+                        <a href="{{ route('categories.create') }}"
+                            class="py-2 px-4 m-2 bg-green-500 hover:bg-green-400 text-gray-50 rounded-md">New
                             Category</a>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -60,7 +59,7 @@
                                                     src="{{ Storage::url($category->image) }}">
                                             </div>
                                         </td>
-                                        <td class="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        {{-- <td class="flex px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="{{ route('admin.add_sub', $category->id) }}"
                                                 class="text-indigo-600 hover:text-indigo-900 px-2">Add Sub</a>
                                             <a href="{{ route('admin.categories.edit', $category->id) }}"
@@ -76,7 +75,7 @@
                                                     Delete
                                                 </a>
                                             </form>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
