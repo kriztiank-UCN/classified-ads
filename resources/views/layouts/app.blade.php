@@ -30,7 +30,7 @@
       x-data="{ open: false }" @click.away="open = false">
       <div class="flex flex-shrink-0 flex-row items-center justify-between px-8 py-4">
         <a href="#"
-          class="dark-mode:text-white focus:shadow-outline rounded-lg text-lg font-semibold uppercase tracking-widest text-gray-900 focus:outline-none">Classified
+          class="dark-mode:text-white focus:shadow-outline rounded-lg text-lg font-semibold tracking-widest text-gray-900 focus:outline-none">Classified
           Admin</a>
         {{-- HAMBURGER MENU BUTTON --}}
         <button class="focus:shadow-outline rounded-lg focus:outline-none md:hidden" @click="open = !open">
@@ -50,6 +50,9 @@
           Dashboard </x-app-link>
         <x-app-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
           Categories </x-app-link>
+
+          <x-app-link href="{{ route('subcategories.index') }}" :active="request()->routeIs('subcategories.index')">
+            Sub Categories </x-app-link>
         <div class="relative" x-data="{ open: false }" @click.away="open = false">
           <button
             class="dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg bg-transparent px-4 py-2 text-left text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:block"

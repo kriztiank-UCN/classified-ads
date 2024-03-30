@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('Categories') }}
+      {{ __('Sub Categories') }}
     </h2>
   </x-slot>
 
@@ -14,9 +14,9 @@
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block w-full py-2 align-middle sm:px-6 lg:px-8">
           <div class="flex justify-end">
-            <a href="{{ route('categories.create') }}"
+            <a href="{{ route('subcategories.create') }}"
               class="m-2 rounded-md bg-green-500 px-4 py-2 text-gray-50 hover:bg-green-400">New
-              Category</a>
+             Sub Category</a>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                @foreach ($categories as $category)
+                @forelse ($sub_categories as $category)
                   <tr>
                     <td class="whitespace-nowrap px-6 py-4">
                       <div class="flex items-center">
@@ -79,8 +79,12 @@
                         </a>
                       </form>
                     </td>
+                    @empty
+                    <td>
+                      <div class="m-2 p-2">No Sub Categories</div>
+                  </td>
                   </tr>
-                @endforeach
+                @endforelse
               </tbody>
             </table>
             {{-- <div class="m-2 p-2">
