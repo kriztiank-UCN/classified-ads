@@ -10,17 +10,26 @@ use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $categories = Category::paginate(2);
         return view('admin.categories.index', compact('categories'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('admin.categories.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(StoreCategoryRequest $request)
     {
         if ($request->hasFile('image')) {
@@ -37,6 +46,9 @@ class CategoryController extends Controller
         dd('no image');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(Category $category)
     {
         return view('admin.categories.edit', compact('category'));

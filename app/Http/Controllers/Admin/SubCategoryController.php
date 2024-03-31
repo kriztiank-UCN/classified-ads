@@ -42,17 +42,9 @@ class SubCategoryController extends Controller
                 'image' => $path
             ]);
 
-            return redirect()->route('categories.index')->with('message', 'Category created.');
+            return redirect()->route('subcategories.index')->with('message', 'Sub Category created.');
         }
         dd('no image');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
