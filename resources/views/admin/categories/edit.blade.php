@@ -31,6 +31,7 @@
                 @method('PUT')
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                   <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                    {{-- NAME --}}
                     <div class="grid grid-cols-3 gap-6">
                       <div class="col-span-3 sm:col-span-2">
                         <label for="name" class="block text-sm font-medium text-gray-700">
@@ -41,9 +42,12 @@
                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             value="{{ $category->name }}">
                         </div>
+                        @error('name')
+                          <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                       </div>
                     </div>
-
+                    {{-- IMAGE --}}
                     <div>
                       <label class="block text-sm font-medium text-gray-700">
                         Image
@@ -55,6 +59,9 @@
                         <input id="image" type="file" name="image"
                           class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                       </div>
+                      @error('image')
+                        <span class="text-red-500">{{ $message }}</span>
+                      @enderror
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:px-6">
                       <button type="submit"
@@ -139,4 +146,4 @@
       </div>
     </div>
   </div>
-  </x-app-layout>
+</x-app-layout>

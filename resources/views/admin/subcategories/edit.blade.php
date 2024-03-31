@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800">
-      {{ __('New Category') }}
+      {{ __('Edit Sub Category') }}
     </h2>
   </x-slot>
 
@@ -11,7 +11,7 @@
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block w-full py-2 align-middle sm:px-6 lg:px-8">
           <div class="flex justify-start">
-            <a href="{{ route('categories.index') }}"
+            <a href="{{ route('subcategories.index') }}"
               class="m-2 rounded-md bg-green-500 px-4 py-2 text-gray-50 hover:bg-green-300">Back</a>
           </div>
         </div>
@@ -21,14 +21,16 @@
           <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
               <div class="px-4 sm:px-0">
-                <h3 class="text-lg font-medium leading-6 text-gray-900">Create Category</h3>
+                <h3 class="text-lg font-medium leading-6 text-gray-900">Update Sub Category</h3>
               </div>
             </div>
             <div class="mt-5 md:col-span-2 md:mt-0">
-              <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('subcategories.update', $sub_category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                   <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                    {{-- NAME --}}
                     <div class="grid grid-cols-3 gap-6">
                       <div class="col-span-3 sm:col-span-2">
                         <label for="name" class="block text-sm font-medium text-gray-700">
@@ -37,18 +39,41 @@
                         <div class="mt-1 flex rounded-md shadow-sm">
                           <input id="name" type="text" name="name"
                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Name">
+                            value="{{ $sub_category->name }}">
                         </div>
                         @error('name')
                           <span class="text-red-500">{{ $message }}</span>
                         @enderror
                       </div>
                     </div>
-
+                    {{-- CATEGORY SELECT --}}
+                    <div class="grid grid-cols-3 gap-6">
+                      <div class="col-span-3 sm:col-span-2">
+                        <label for="name" class="block text-sm font-medium text-gray-700">
+                          Category
+                        </label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                          <select name="category_id">
+                            @foreach (App\Models\Category::all() as $category)
+                            <option value="{{ $category->id }}"
+                              {{ $category->id == $sub_category->category_id ? 'selected' : '' }}>
+                              {{ $category->name }}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        @error('category_id')
+                          <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                      </div>
+                    </div>
+                    {{-- IMAGE --}}
                     <div>
                       <label class="block text-sm font-medium text-gray-700">
                         Image
                       </label>
+                      <div class="m-2 w-full p-2">
+                        <img class="h-32 w-32" src="{{ Storage::url($sub_category->image) }}">
+                      </div>
                       <div class="mt-1 flex items-center">
                         <input id="image" type="file" name="image"
                           class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />

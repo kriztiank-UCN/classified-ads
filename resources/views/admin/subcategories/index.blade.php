@@ -65,14 +65,14 @@
                       {{-- <a href="{{ route('admin.add_sub', $category->id) }}"
                                                 class="text-indigo-600 hover:text-indigo-900 px-2">Add Sub</a> --}}
 
-                      <a href="{{ route('categories.edit', $category->id) }}"
+                      <a href="{{ route('subcategories.edit', $category->id) }}"
                         class="px-2 text-indigo-600 hover:text-indigo-900">Edit</a>
 
-                      <form method="POST" action="{{ route('categories.destroy', $category->id) }}">
+                      <form method="POST" action="{{ route('subcategories.destroy', $category->id) }}">
                         @csrf
                         @method('DELETE')
                         <a class="px-2 text-red-500 hover:text-red-900"
-                          href="{{ route('categories.destroy', $category->id) }}"
+                          href="{{ route('subcategories.destroy', $category->id) }}"
                           onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                           Delete

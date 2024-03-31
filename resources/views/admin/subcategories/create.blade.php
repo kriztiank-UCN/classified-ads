@@ -40,6 +40,9 @@
                             class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             placeholder="Name">
                         </div>
+                        @error('name')
+                          <span class="text-red-500">{{ $message }}</span>
+                        @enderror
                       </div>
                     </div>
                     {{-- CATEGORY SELECT --}}
@@ -56,7 +59,7 @@
                             @endforeach
                           </select>
                           @error('category_id')
-                            <span class="error">{{ $message }}</span>
+                            <span class="text-red-500">{{ $message }}</span>
                           @enderror
                         </div>
                       </div>
@@ -71,6 +74,9 @@
                         <input id="image" type="file" name="image"
                           class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                       </div>
+                      @error('image')
+                        <span class="text-red-500">{{ $message }}</span>
+                      @enderror
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:px-6">
                       <button type="submit"

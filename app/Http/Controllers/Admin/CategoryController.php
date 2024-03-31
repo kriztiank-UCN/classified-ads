@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditCategoryRequest;
 use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
@@ -53,8 +54,10 @@ class CategoryController extends Controller
     {
         return view('admin.categories.edit', compact('category'));
     }
-
-    public function update(Request $request, Category $category)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(EditCategoryRequest $request, Category $category)
     {
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('public/categories');
